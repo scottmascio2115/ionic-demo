@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle color="secondary">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Spot2fish</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="home">
+  <ion-list approxItemHeight="50px" text-wrap>
+    <ion-item *ngFor="let spot of spots">
+      <ion-card>
+        <ion-item>
+          <ion-avatar item-left>
+            <img [src]="spot.image" *ngIf="spot.image">
+          </ion-avatar>
+          <h2>{{spot.extlocation}}</h2>
+        </ion-item>
+
+
+        <img [src]="spot.image" *ngIf="spot.image">
+
+        <ion-card-content>
+          <p>{{spot.text}}</p>
+          <p>Lat: {{spot.lat}}</p>
+          <p>Long: {{spot.long}}</p>
+        </ion-card-content>
+
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button icon-left clear small [disabled]="spot.likeDisabled" (click)="disableLike(spot)">
+              <ion-icon name="thumbs-up"></ion-icon>
+              <div>{{spot.rank}}</div>
+          </button>
+        </ion-col>
+
+        <ion-col col-6>
+          <button ion-button icon-left clear small [disabled]="spot.nfrDisabled" (click)="disableNfr(spot)">
+            <ion-icon name="thumbs-down"></ion-icon>
+            <div>Not a spot</div>
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button icon-left clear small (click)="showOnMap(spot)">
+            <ion-icon name="globe"></ion-icon>
+            <div>Open in map</div>
+          </button>
+        </ion-col>
+
+        <ion-col col-6>
+          <button ion-button icon-left clear small [disabled]="spot.claimDisabled" (click)="disableClaim(spot)">
+            <ion-icon name="add"></ion-icon>
+            <div>Add to my spots</div>
+          </button>
+        </ion-col>
+      </ion-row>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<style>
+  .social-cards ion-col {
+    padding: 0;
+  }
+</style>
